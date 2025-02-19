@@ -35,32 +35,73 @@
       'Berne, Eric', 'Berra, Yogi', 'Berry, Wendell', 'Bevan, Aneurin', 'Ben-Gurion, David', 'Bevel, Ken', 'Biden, Joseph', 'Bennington, Chester', 'Bierce, Ambrose',
       'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
     ];
-    
+    console.log("problem 1:")
+    let filteredInventors = inventors.filter(item => item.year > 1500 && item.year < 1600);
+    console.table(filteredInventors);
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
 
+    console.log("problem 2:")
+    let mappedInventors = inventors.map(items => items.first + " " + items.last);
+    console.table(mappedInventors);
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
 
+    console.log("problem 3:")
+    let sortedInventors = inventors.sort(sortDate);
+    function sortDate(a, b) {
+      if (a.year > b.year) return 1;
+      if (a.year == b.year) return 0;
+      if (a.year < b.year) return -1;
+    }
+    console.table(sortedInventors);
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
 
+    console.log("problem 4:");
+    let reducedInventors = inventors.reduce((sum, index) => sum + (index.passed - index.year),0);
+    console.log(reducedInventors);
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
 
+    console.log("problem 5:");
+    let sortedInventorsDate = inventors.sort(sortLiveDate);
+    function sortLiveDate(a, b) {
+      let aYear = a.passed - a.year;
+      let bYear = b.passed - b.year;
+      if (aYear < bYear) return 1;
+      if (aYear == bYear) return 0;
+      if (aYear > bYear) return -1;
+    }
+    console.table(sortedInventorsDate);
     // 5. Sort the inventors by years lived
+
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
 
+    let sortedPeople = people.sort(sortPeople);
+    function sortPeople(a, b) {
+      if (a < b) return -1;
+      if (a == b) return 0;
+      if (a > b) return 1;
+    }
+    console.table(sortedPeople);
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    let reducedData = data.reduce(function(obj, index) {
+      if (!obj[index]) {
+        obj[index] = 0;
+      }
+      obj[index]++;
+      return obj;
+    }, {})
+    console.log(reducedData);
   </script>
 </body>
 </html>
